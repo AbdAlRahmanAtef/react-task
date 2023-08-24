@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  user-select: none;
 }
 
 .logout-btn {
@@ -27,7 +28,7 @@ body {
   margin-bottom: 30px;
 }
 
-.pagination li {
+.pagination-button {
   margin: 0 5px;
   cursor: pointer;
   background-color: #9BFF00;
@@ -43,9 +44,5 @@ body {
 
 .active {
   opacity: 1;
-  border: 1px solid black;
-}
-
-.active {
-  font-weight: bold;
+  border: 2px solid #fcfcfc;
 }

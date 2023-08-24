@@ -1,21 +1,38 @@
 import React, { useState } from "react";
-import ReactPaginate from "react-paginate";
 
-const Pagination = ({ setCurrentPage, count }) => {
-  const handlePageClick = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
+const Pagination = ({ currentPage, setCurrentPage, count }) => {
+  let data = [];
+
+  for (let i = 1; i <= count; i++) {
+    data.push(i);
+  }
 
   return (
-    <ReactPaginate
-      previousLabel=" &lt;"
-      nextLabel="&gt;"
-      breakLabel="..."
-      pageCount={count}
-      onPageChange={handlePageClick}
-      containerClassName="pagination"
-      activeClassName="active"
-    />
+    <div className="pagination">
+      <button
+        className="pagination-button"
+        onClick={() => setCurrentPage((prev) => prev - 1)}
+        disabled={currentPage === 0}
+      >
+        &lt;
+      </button>
+      {data.map((item, index) => (
+        <div
+          className={`pagination-button ${currentPage === index && "active"}`}
+          key={index}
+          onClick={() => setCurrentPage(index)}
+        >
+          {item}
+        </div>
+      ))}
+      <button
+        className="pagination-button"
+        onClick={() => setCurrentPage((prev) => prev + 1)}
+        disabled={currentPage === 2}
+      >
+        &gt;
+      </button>
+    </div>
   );
 };
 

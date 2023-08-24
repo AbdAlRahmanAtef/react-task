@@ -231,7 +231,7 @@ const AdminDashboardPage = () => {
           </Droppable>
         </DragDropContext>
       </div>
-      <Pagination count={3} setCurrentPage={setPage} />
+      <Pagination count={3} setCurrentPage={setPage} currentPage={page} />
     </>
   );
 };
