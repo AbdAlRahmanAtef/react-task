@@ -43,7 +43,7 @@ const AdminLoginPage = () => {
         payload: { user: res.user_id, token: res.token, role: res.role },
       });
 
-      navigate("/admin/dashboard");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

@@ -11,10 +11,7 @@ function renderRoutes(role) {
     case "admin":
       return (
         <Routes>
-          <Route
-            path="/admin/dashboard"
-            element={<AdminDashboardPage />}
-          ></Route>
+          <Route path="/" element={<AdminDashboardPage />}></Route>
         </Routes>
       );
       break;
