@@ -2,65 +2,157 @@ import React, { useEffect, useState } from "react";
 import { AuthContext } from "../authContext";
 import MkdSDK from "../utils/MkdSDK";
 import VideoCard from "../components/VideoCard";
+import Pagination from "../components/Pagination";
+import image1 from "../assets/image.png";
+import image2 from "../assets/image-2.png";
+import image3 from "../assets/image-3.jpeg";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const DATA = [
   {
-    id: 1,
-    image:
-      "https://www.google.com/imgres?imgurl=https%3A%2F%2Ffreepngimg.com%2Fsave%2F120346-piece-anime-one-free-download-png-hd%2F1730x862&tbnid=dokS6sRPj7UumM&vet=12ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ..i&imgrefurl=https%3A%2F%2Ffreepngimg.com%2Fpng%2F120346-piece-anime-one-free-download-png-hd&docid=FdOn329zE8LPvM&w=1730&h=862&q=anime%20png&ved=2ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ",
+    id: "one",
+    number: 1,
+    image: image1,
     desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
     author: "ninjanft",
     likes: 220,
   },
   {
-    id: 2,
-    image:
-      "https://www.google.com/imgres?imgurl=https%3A%2F%2Ffreepngimg.com%2Fsave%2F120346-piece-anime-one-free-download-png-hd%2F1730x862&tbnid=dokS6sRPj7UumM&vet=12ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ..i&imgrefurl=https%3A%2F%2Ffreepngimg.com%2Fpng%2F120346-piece-anime-one-free-download-png-hd&docid=FdOn329zE8LPvM&w=1730&h=862&q=anime%20png&ved=2ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ",
+    id: "two",
+    number: 2,
+    image: image1,
     desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
     author: "ninjanft",
     likes: 220,
   },
   {
-    id: 3,
-    image:
-      "https://www.google.com/imgres?imgurl=https%3A%2F%2Ffreepngimg.com%2Fsave%2F120346-piece-anime-one-free-download-png-hd%2F1730x862&tbnid=dokS6sRPj7UumM&vet=12ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ..i&imgrefurl=https%3A%2F%2Ffreepngimg.com%2Fpng%2F120346-piece-anime-one-free-download-png-hd&docid=FdOn329zE8LPvM&w=1730&h=862&q=anime%20png&ved=2ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ",
+    id: "three",
+    number: 3,
+    image: image1,
     desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
     author: "ninjanft",
     likes: 220,
   },
   {
-    id: 4,
-    image:
-      "https://www.google.com/imgres?imgurl=https%3A%2F%2Ffreepngimg.com%2Fsave%2F120346-piece-anime-one-free-download-png-hd%2F1730x862&tbnid=dokS6sRPj7UumM&vet=12ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ..i&imgrefurl=https%3A%2F%2Ffreepngimg.com%2Fpng%2F120346-piece-anime-one-free-download-png-hd&docid=FdOn329zE8LPvM&w=1730&h=862&q=anime%20png&ved=2ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ",
+    id: "four",
+    number: 4,
+    image: image1,
     desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
     author: "ninjanft",
     likes: 220,
   },
   {
-    id: 5,
-    image:
-      "https://www.google.com/imgres?imgurl=https%3A%2F%2Ffreepngimg.com%2Fsave%2F120346-piece-anime-one-free-download-png-hd%2F1730x862&tbnid=dokS6sRPj7UumM&vet=12ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ..i&imgrefurl=https%3A%2F%2Ffreepngimg.com%2Fpng%2F120346-piece-anime-one-free-download-png-hd&docid=FdOn329zE8LPvM&w=1730&h=862&q=anime%20png&ved=2ahUKEwj6heGuxvOAAxXlsEwKHUXzAE8QMygbegUIARCxAQ",
+    id: "five",
+    number: 5,
+    image: image1,
     desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
     author: "ninjanft",
+    likes: 220,
+  },
+  {
+    id: "six",
+    number: 6,
+    image: image2,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "kingdom43world",
+    likes: 220,
+  },
+  {
+    id: "seven",
+    number: 7,
+    image: image2,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "kingdom43world",
+    likes: 220,
+  },
+  {
+    id: "eight",
+    number: 8,
+    image: image2,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "kingdom43world",
+    likes: 220,
+  },
+  {
+    id: "nine",
+    number: 9,
+    image: image2,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "kingdom43world",
+    likes: 220,
+  },
+  {
+    id: "ten",
+    number: 10,
+    image: image2,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "kingdom43world",
+    likes: 220,
+  },
+  {
+    id: "eleven",
+    number: 11,
+    image: image3,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "deniscrypto",
+    likes: 220,
+  },
+  {
+    id: "tewlve",
+    number: 12,
+    image: image3,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "deniscrypto",
+    likes: 220,
+  },
+  {
+    id: "threeteen",
+    number: 13,
+    image: image3,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "deniscrypto",
+    likes: 220,
+  },
+  {
+    id: "fourteen",
+    number: 14,
+    image: image3,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "deniscrypto",
+    likes: 220,
+  },
+  {
+    id: "fiveteen",
+    number: 15,
+    image: image3,
+    desc: "Rune raises $100,000 for marketing through NFT butterflies sale",
+    author: "deniscrypto",
     likes: 220,
   },
 ];
 
+const indexes = [
+  { s: 0, e: 5 },
+  { s: 5, e: 10 },
+  { s: 10, e: 15 },
+];
+
 const AdminDashboardPage = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [videos, setVideos] = useState([]);
   const { dispatch } = React.useContext(AuthContext);
 
-  let sdk = new MkdSDK();
-  const getData = async () => {
-    sdk.setTable("video");
-    const data = await sdk.callRestAPI(
-      { payload: {}, page, limit: 10 },
-      "PAGINATE"
-    );
+  //Does not work => Error: TOKEN_EXPIRED
+  // const getData = async () => {
+  //   let sdk = new MkdSDK();
+  //   sdk.setTable("video");
+  //   const data = await sdk.callRestAPI(
+  //     { payload: {}, page, limit: 10 },
+  //     "PAGINATE"
+  //   );
 
-    setVideos(data);
-  };
+  //   // setVideos(data);
+  // };
 
   const logout = () => {
     dispatch({
@@ -68,8 +160,20 @@ const AdminDashboardPage = () => {
     });
   };
 
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const items = Array.from(videos);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setVideos(items);
+  };
+
   useEffect(() => {
-    getData();
+    // getData();
+
+    setVideos(DATA.slice(indexes[page].s, indexes[page].e));
   }, [page]);
 
   return (
@@ -104,10 +208,30 @@ const AdminDashboardPage = () => {
 
           <span className="text-[16px]">Likes</span>
         </div>
-        {DATA.map((v) => (
-          <VideoCard key={v.id} item={v} />
-        ))}
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="videos">
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {videos.map((v, i) => (
+                  <Draggable key={v.id} draggableId={v.id} index={i}>
+                    {(provided) => (
+                      <div
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                      >
+                        <VideoCard item={v} number={i + 1} />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
+      <Pagination count={3} setCurrentPage={setPage} />
     </>
   );
 };
